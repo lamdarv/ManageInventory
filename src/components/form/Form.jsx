@@ -48,6 +48,7 @@ const Form = () => {
         <div className="bg-white rounded-lg shadow-md p-6 w-max">
             <form onSubmit={handleSubmit} className=" w-full ">
               <div className='flex place-content-around'>
+                {/* Left Column */}
                 <div className="left">
                   {/* Nama Inventaris */}
                   <div className="mb-6 w-96">
@@ -101,8 +102,8 @@ const Form = () => {
                       <option value="Tidak Tersedia">Tidak Tersedia</option>
                     </select>
                   </div>
-
                 </div>
+                {/* Right Column */}
                 <div className="ml-6 right">
                   {/* List Peminjam */}
                   <div className="mb-6 w-96">
