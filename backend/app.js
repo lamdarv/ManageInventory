@@ -8,7 +8,7 @@ require("dotenv").config();
 const postRoute = require("./src/routes/post");
 const app = express();
 const PORT = process.env.PORT || 5000;
-const DBNAME = process.env.DBNAME || "test";
+const DBNAME = process.env.DBNAME || "ManageInventory";
 const mongouri =
 	process.env.MONGO_URI || `mongodb://127.0.0.1:27017/${DBNAME}?ssl=false`;
 mongoose.connect(mongouri);
@@ -25,5 +25,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-	console.log("run on " + PORT);
+	console.log("Port run on " + PORT);
 });

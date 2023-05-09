@@ -2,18 +2,27 @@ const mongoose = require("mongoose");
 
 const siteSchema = mongoose.Schema(
 	{
-		title: {
+		nama: {
 			type: String,
+			required: true,
+		},
+		deskripsi: {
+			type: String,
+			required: true,
+		},
+		tgl_kepemilikan: {
+			type: Date,
+			required: true,
+		},
+		list_peminjam: {
+			type: [String],
 			required: false,
 		},
-		description: {
+		status: {
 			type: String,
-			required: false,
+			required: true,
 		},
-		location: {
-			type: String,
-			required: false,
-		},
+
 	},
 	{ timestamps: true }
 );

@@ -6,12 +6,15 @@ import { Link, Navigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Modal from '../../components/modal/Modal';
 import { useParams } from "react-router-dom";
+import Select from 'react-select';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
     const [showModal, setShowModal] = useState(false)
     const handleOnClose = () => setShowModal(false)
     const [postId, setPostId] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(null);
+
 
     useEffect(() => {
         getPosts();
@@ -48,48 +51,76 @@ const Posts = () => {
         rows.push(posts.slice(i, i + 2));
     }
 
-  return (
-    <div>
-        <Topbar />
-        <Navbar />
-        <div className="md:container md:mx-auto ">
-        {rows.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex items-center justify-center">
-            {row.map(post => (
-                <div key={post._id} className="flex justify-center items-center ">
-                <div className="mr-6 ml-6 mt-10 p-6 bg-white rounded-lg shadow-md">
-                    <h2 className="max-h-56 text-xl font-quicksand mb-4 font-semibold">{post.title}</h2>
-                    <p className="text-13 font-montserrat font-light ">{post.location}</p>
-                    <p className="font-montserrat font-regular text-black leading-relaxed w-96 break-words">
-                    {post.description}
-                    </p>
-                    <ul className="flex items-center mt-6 justify-center">
+    const options = posts.map(post => ({
+        label: post.list_peminjam,
+        value: post.list_peminjam
+    }));
+      
+
+    
+    return (
+      <div>
+          <Topbar />
+          <Navbar />
+          <div className="md:container md:mx-auto">
+            <div className="flex flex-wrap justify-center">
+              {posts.map(post => (
+                <div key={post._id} className="mr-6 ml-6 mt-10 p-6 bg-white rounded-lg shadow-md w-full md:w-1/2">
+                    <table>
+                    <tr>
+                        <td className='font-quicksand font-normal text-lg pr-6'><strong>Nama Inventaris</strong></td>
+                        <td className='font-quicksand font-normal text-lg pr-6'>{post.nama}</td>
+                    </tr>
+                    <tr>
+                        <td className='font-quicksand font-normal text-lg pr-6'><strong>Deskripsi</strong></td>
+                        <td className='font-quicksand font-normal text-lg pr-6'>{post.deskripsi}</td>
+                    </tr>
+                    <tr>
+                        <td className='font-quicksand font-normal text-lg pr-6'><strong>Tanggal Kepemilikan</strong></td>
+                        <td className='font-quicksand font-normal text-lg pr-6'>{new Date(post.tgl_kepemilikan).toLocaleDateString('id-ID')}</td>
+                    </tr>
+                    <tr>
+                        <td className='font-quicksand font-normal text-lg pr-6'><strong>Status</strong></td>
+                        <td className='font-quicksand font-normal text-lg pr-6'>{post.status}</td>
+                    </tr>
+                    <tr>
+                        <td className='font-quicksand font-normal text-lg pr-6'><strong>List Peminjam</strong></td>
+                        <td>
+                        <ul className="font-quicksand font-normal text-lg pr-6">
+                            {post.list_peminjam.map((peminjam) => (
+                            <li key={peminjam}>{peminjam}</li>
+                            ))}
+                        </ul>
+                        </td>
+                    </tr>
+                    </table>
+
+            
+                  <ul className="flex items-center mt-6 justify-center">
                     <li className="rounded-40 bg-custom-green-1 hover:drop-shadow-xl items-center w-28">
-                        <Link to={`/update/${post._id}`} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">    
+                      <Link to={`/update/${post._id}`} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
                         <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
                         Edit
-                        </Link>
+                      </Link>
                     </li>
-                    <li className="ml-6 rounded-40 bg-custom-red-1 hover:drop-shadow-xl items-center w-28"> 
-                        <Link className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center " onClick={() => setShowModal(post._id)}>
+                    <li className="ml-6 rounded-40 bg-custom-red-1 hover:drop-shadow-xl items-center w-28">
+                      <Link className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center " onClick={() => setShowModal(post._id)}>
                         <img src={`${process.env.PUBLIC_URL}/assets/trash_icon.svg`} alt="Delete_icon" className="pr-3 w-7 h-7" />
                         Delete
-                        </Link>
+                      </Link>
                     </li>
-                    </ul>
-                </div>
-                {showModal === post._id && (
+                  </ul>
+                  {showModal === post._id && (
                     <Modal visible={true} onClose={() => setShowModal(null)} postId={post._id} handleDeletePost={handleDeletePost} />
-                )}
+                  )}
                 </div>
-            ))}
+              ))}
             </div>
-        ))}
-        </div>
-
-        <Bottom />
-    </div>
-  )
+          </div>
+          <Bottom />
+      </div>
+    )
+    
 }
 
 export default Posts

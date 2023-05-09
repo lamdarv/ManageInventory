@@ -2,9 +2,11 @@ const Post = require("../models/post");
 
 exports.create = async (req, res) => {
 	const schema = new Post({
-		title: req.body.title,
-		description: req.body.description,
-		location: req.body.location,
+		nama: req.body.nama,
+		deskripsi: req.body.deskripsi,
+		tgl_kepemilikan: req.body.tgl_kepemilikan,
+		list_peminjam: req.body.list_peminjam,
+		status: req.body.status,
 	});
 	try {
 		const schemaCreate = await schema.save();
@@ -40,9 +42,11 @@ exports.update = async (req, res) => {
 		const schemaUpdate = await Post.updateOne(
 			{ _id: req.params.id },
 			{
-				title: req.body.title,
-				description: req.body.description,
-				location: req.body.location,
+				nama: req.body.nama,
+				deskripsi: req.body.deskripsi,
+				tgl_kepemilikan: req.body.tgl_kepemilikan,
+				list_peminjam: req.body.list_peminjam,
+				status: req.body.status,
 			}
 		);
 		res.json(schemaUpdate);
