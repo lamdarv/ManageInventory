@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../../components/modal/Modal';
 import { useParams } from "react-router-dom";
 import Select from 'react-select';
+import NewNavbar from '../../components/navbar/NewNavbar';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -59,13 +60,17 @@ const Posts = () => {
 
     
     return (
-      <div>
+      <div className='relative bg-custom-green-4'>
+        <div className='w-full' id='Top'>
           <Topbar />
-          <Navbar />
+        </div>
+        <div className="flex">
+        
+        <NewNavbar className="" />
           <div className="md:container md:mx-auto">
             <div className="flex flex-wrap justify-center">
               {posts.map(post => (
-                <div key={post._id} className="mr-6 ml-6 mt-10 p-6 bg-white rounded-lg shadow-md w-full md:w-1/2">
+                <div key={post._id} className="mr-6 ml-6 mt-10 p-6 bg-white rounded-lg shadow-md w-full md:w-3/4">
                     <table>
                     <tr>
                         <td className='font-quicksand font-normal text-lg pr-6'><strong>Nama Inventaris</strong></td>
@@ -94,8 +99,6 @@ const Posts = () => {
                         </td>
                     </tr>
                     </table>
-
-            
                   <ul className="flex items-center mt-6 justify-center">
                     <li className="rounded-40 bg-custom-green-1 hover:drop-shadow-xl items-center w-28">
                       <Link to={`/update/${post._id}`} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
@@ -116,8 +119,10 @@ const Posts = () => {
                 </div>
               ))}
             </div>
+            <Bottom />
           </div>
-          <Bottom />
+          
+        </div>
       </div>
     )
     

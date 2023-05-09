@@ -14,10 +14,16 @@ module.exports = {
         'custom-green-2':'#07543D',
         'custom-orange-1':'#F36B30',
         'custom-gray-5':'#EEF0F6',
+        'custom-green-3':'#93C13D',
+        'custom-green-4':'#E4FCD9',
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(90deg, rgba(217, 217, 217, 0.4) 8.64%, rgba(217, 217, 217, 0) 100%)',
       },
       colors: {
         'custom-gray-2': '#58625A',
         'custom-gray-4': '#4D4747',
+        'custom-white-2': '#F1E9E9',
       },
       borderRadius: {
         '40':'40px',

@@ -46,7 +46,7 @@ const Form = () => {
     return (
     <div className="flex items-center justify-center mt-10">
         <div className="bg-white rounded-lg shadow-md p-6 w-max">
-            <form onSubmit={handleSubmit} className=" w-full ">
+            <form onSubmit={handleSubmit} className=" w-full">
               <div className='flex place-content-around'>
                 {/* Left Column */}
                 <div className="left">
