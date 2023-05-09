@@ -36,7 +36,7 @@ const UpdateForm = () => {
         deskripsi, 
         tgl_kepemilikan: tgl_kepemilikan.toISOString(), // convert date object to ISO string
         status, 
-        list_peminjam: peminjam.map(p => p.value)
+        list_peminjam: peminjam      
       };
       try {
         const response = await axios.patch(`http://localhost:5000/api/post/${id}`, data);
@@ -123,8 +123,8 @@ const UpdateForm = () => {
                   </label>
                   <Select
                     options={options}
-                    value={peminjam}
-                    onChange={setPeminjam}
+                    value={peminjam.map((p) => ({ label: p, value: p }))}
+                    onChange={(selectedOptions) => setPeminjam(selectedOptions.map(option => option.value))}
                     placeholder="Cari atau pilih peminjam"
                     isSearchable={true}
                     isMulti={true}
