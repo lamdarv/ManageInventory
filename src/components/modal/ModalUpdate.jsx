@@ -27,22 +27,21 @@ const customStyles = {
   }
 };
 
-const ModalUpdate = ({isOpen, onRequestClose}) => {
+const ModalUpdate = ({isOpen, onRequestClose, postId}) => {
     const [nama, setNama] = useState("");
     const [deskripsi, setDeskripsi] = useState("");
     const [tgl_kepemilikan, setTglKepemilikan] = useState("");
     const [status, setStatus] = useState("");
     const [peminjam, setPeminjam] = useState([]);
-    const { id } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         getPostById();
-    }, [id]);
+    }, [postId]);
 
 
     const getPostById = async () => {
-    const response = await axios.get(`http://localhost:5000/api/post/${id}`)
+    const response = await axios.get(`http://localhost:5000/api/post/${postId}`)
     setNama(response.data.nama);
     setDeskripsi(response.data.deskripsi);
     setTglKepemilikan(new Date(response.data.tgl_kepemilikan)); // use Date constructor to parse the date string
@@ -58,18 +57,17 @@ const ModalUpdate = ({isOpen, onRequestClose}) => {
           deskripsi, 
           tgl_kepemilikan: tgl_kepemilikan.toISOString(),
           status, 
-          list_peminjam: peminjam.map(p => p.value)
+          list_peminjam: peminjam
         };
 
         try {
-            const response = await axios.patch(`http://localhost:5000/api/post/${id}`, data);
-          await axios.post('http://localhost:5000/api/post/', data);
-          window.alert('Inventaris berhasil diupdate!');
-          onRequestClose();
-          navigate('/posts');
-          window.location.reload()
+            const response = await axios.patch(`http://localhost:5000/api/post/${postId}`, data);
+            window.alert('Inventaris berhasil diupdate!');
+            onRequestClose();
+            // navigate('/posts');
+            window.location.reload()
         } catch (error) {
-          console.error('Error creating note:', error);
+          console.error('Error updating note:', error);
         }
     };
 
@@ -91,6 +89,7 @@ const ModalUpdate = ({isOpen, onRequestClose}) => {
       <Modal
         isOpen={isOpen}
         onRequestClose={onRequestClose}
+        postId={postId}
         style={customStyles}
         className="relative inset-0 z-50 overflow-auto "
       >

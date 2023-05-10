@@ -49,6 +49,11 @@ const Posts = () => {
         }
     }
 
+    const handleEdit = (id) => {
+      setPostId(id);
+      setShowModalUpdate(true);
+    };
+
     const handleModalUpdateClose = () => {
       setShowModalUpdate(false);
       document.body.classList.remove('overflow-hidden');
@@ -60,8 +65,6 @@ const Posts = () => {
       setShowModalUpdate(true);
       document.body.classList.add('overflow-hidden');
     };
-
-
 
     const rows = [];
     for (let i = 0; i < posts.length; i += 2) {
@@ -125,14 +128,10 @@ const Posts = () => {
                     </table>
                   <ul className="flex items-center mt-6 justify-center">
                     <li className="rounded-40 bg-custom-green-1 hover:drop-shadow-xl items-center w-28">
-                      <Link to={`/update/${post._id}`} onClick={handleModalUpdateOpen} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
+                      <Link onClick={() => handleEdit(post._id)} data-id={post._id} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
                         <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
                         Edit
                       </Link>
-                      {/* <Link onClick={handleModalUpdateOpen} data-id={post._id} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
-                        <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
-                        Edit
-                      </Link> */}
                     </li>
                     <li className="ml-6 rounded-40 bg-custom-red-1 hover:drop-shadow-xl items-center w-28">
                       <Link className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center " onClick={() => setShowModal(post._id)}>
@@ -145,7 +144,7 @@ const Posts = () => {
                     <Modal visible={true} onClose={() => setShowModal(null)} postId={post._id} handleDeletePost={handleDeletePost} />
                   )}
                   {showModalUpdate && (
-                    <ModalUpdate isOpen={true} onRequestClose={handleModalUpdateClose} className="fixed inset-0 bg-gray-700 opacity-75 blur z-50 "/>
+                    <ModalUpdate isOpen={true} onRequestClose={handleModalUpdateClose} postId={postId} className="fixed inset-0 bg-gray-700 opacity-75 blur z-50 "/>
                   )}
                 </div>
               ))}
