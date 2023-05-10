@@ -21,8 +21,8 @@ const customStyles = {
     border                : 'none',
   },
   overlay : {
-    backgroundColor       : 'rgba(0, 0, 0, 0.5)',
-    backdropFilter        : 'blur(10px)',
+    backgroundColor       : 'rgba(0, 0, 0, 0.2)',
+    backdropFilter        : 'blur(5px)',
   }
 };
 

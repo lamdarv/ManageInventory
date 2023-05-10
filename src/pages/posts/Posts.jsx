@@ -144,7 +144,7 @@ const Posts = () => {
                     <Modal visible={true} onClose={() => setShowModal(null)} postId={post._id} handleDeletePost={handleDeletePost} />
                   )}
                   {showModalUpdate && (
-                    <ModalUpdate isOpen={true} onRequestClose={handleModalUpdateClose} postId={postId} className="fixed inset-0 bg-gray-700 opacity-75 blur z-50 "/>
+                    <ModalUpdate isOpen={true} onRequestClose={handleModalUpdateClose} postId={postId} className=""/>
                   )}
                 </div>
               ))}
