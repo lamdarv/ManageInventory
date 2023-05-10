@@ -1,0 +1,156 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Select from 'react-select';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    width                 : '500px',
+    height                : '500px',
+    padding               : '50px'
+  }
+};
+
+const ModalCreate = ({isOpen, onRequestClose}) => {
+    const [nama, setNama] = useState("");
+    const [deskripsi, setDeskripsi] = useState("");
+    const [tgl_kepemilikan, setTglKepemilikan] = useState("");
+    const [status, setStatus] = useState("Tersedia"); // initialize to a default value
+    const [peminjam, setPeminjam] = useState("Tidak ada");
+    
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    
+        const data = { 
+          nama,
+          deskripsi, 
+          tgl_kepemilikan, 
+          status, 
+          list_peminjam: peminjam.map(p => p.value)
+        };
+
+        try {
+          const response = await axios.post('http://localhost:5000/api/post/', data);
+          console.log('Note created successfully!');
+          navigate('/posts');
+        } catch (error) {
+          console.error('Error creating note:', error);
+        }
+    };
+
+    const options = [
+      { value: 'Tidak ada', label: 'Tidak ada'},
+      { value: '201524049 - Lamda Richo Vanjaya Sumaryadi', label: '201524049 - Lamda Richo Vanjaya Sumaryadi' },
+      { value: '201524045 - Fiora Berliana Putri', label: '201524045 - Fiora Berliana Putri' },
+      { value: '201524055 - Nauval Ozora Mahadri', label: '201524055 - Nauval Ozora Mahadri'},
+    ];
+  
+    return (
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={onRequestClose}
+        style={customStyles}
+        
+      >
+        <form onSubmit={handleSubmit}>
+          {/* Nama Inventaris */}
+          <div className="mb-6 w-96">
+            <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="nama">
+              Nama Inventaris
+            </label>
+            <input
+              className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
+              id="nama"
+              type="text"
+              maxLength="20"
+              placeholder="Masukkan data inventaris"
+              value={nama}
+              onChange={(e) => setNama(e.target.value)}
+              required="true"
+            />
+            <p className="text-gray-500 text-sm ml-1 mt-0">Maximal Character : 20</p>
+          </div>
+          {/* Tanggal Kepemilikan */}
+          <div className="mb-6 w-96">
+            <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="tgl_kepemilikan">
+              Tanggal Kepemilikan
+            </label>
+            <DatePicker
+              id="tgl_kepemilikan"
+              selected={tgl_kepemilikan}
+              onChange={(date) => setTglKepemilikan(date)}
+              className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
+              required="true"
+              dateFormat="dd/MM/yyyy"
+            />
+          </div>
+          {/* Deskripsi */}
+          <div className="mb-6 w-96">
+            <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="deskripsi">
+              Deskripsi
+            </label>
+            <textarea
+              className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
+              id="deskripsi"
+              placeholder="Masukkan deskripsi inventaris"
+              value={deskripsi}
+              onChange={(e) => setDeskripsi(e.target.value)}
+              required="true"
+            />
+          </div>
+          {/* Status */}
+          <div className="mb-6 w-96">
+            <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="status">
+              Status
+            </label>
+            <Select
+              id="status"
+              options={[
+                { value: 'Tersedia', label: 'Tersedia' },
+                { value: 'Dipinjam', label: 'Dipinjam' },
+              ]}
+              value={{value: status, label: status}}
+              onChange={(option) => setStatus(option.value)}
+              required="true"
+            />
+          </div>
+          {/* Peminjam */}
+          <div className="mb-6 w-96">
+            <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="peminjam">
+              Peminjam
+            </label>
+            <Select
+              id="peminjam"
+              isMulti
+              options={options}
+              value={peminjam}
+              onChange={(option) => setPeminjam(option)}
+            />
+          </div>
+          <div className="flex justify-end">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2">
+              Simpan
+            </button>
+            <button className="bg-white hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-full" onClick={onRequestClose}>
+              Batal
+            </button>
+          </div>
+        </form>
+      </Modal>
+    );
+};
+
+export default ModalCreate;

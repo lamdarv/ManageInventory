@@ -5,6 +5,7 @@ const siteSchema = mongoose.Schema(
 		nama: {
 			type: String,
 			required: true,
+			unique: true,
 		},
 		deskripsi: {
 			type: String,

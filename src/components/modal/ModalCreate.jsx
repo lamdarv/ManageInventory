@@ -4,8 +4,29 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
+import Modal from 'react-modal';
 
-const Form = () => {
+Modal.setAppElement('#root');
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    width                 : '65%',
+    padding               : '1 rem',
+    border                : 'none',
+  },
+  overlay : {
+    backgroundColor       : 'rgba(0, 0, 0, 0.5)',
+    backdropFilter        : 'blur(10px)',
+  }
+};
+
+const ModalCreate = ({isOpen, onRequestClose}) => {
     const [nama, setNama] = useState("");
     const [deskripsi, setDeskripsi] = useState("");
     const [tgl_kepemilikan, setTglKepemilikan] = useState("");
@@ -35,17 +56,22 @@ const Form = () => {
     };
 
     const options = [
-      { value: 'Tidak ada', label: 'Tidak ada'},
       { value: '201524049 - Lamda Richo Vanjaya Sumaryadi', label: '201524049 - Lamda Richo Vanjaya Sumaryadi' },
       { value: '201524045 - Fiora Berliana Putri', label: '201524045 - Fiora Berliana Putri' },
       { value: '201524055 - Nauval Ozora Mahadri', label: '201524055 - Nauval Ozora Mahadri'},
     ];
   
     return (
-    <div className="flex items-center justify-center mt-10 ">
-        <div className="bg-white rounded-lg shadow-md p-6 w-max">
-            <form onSubmit={handleSubmit} className=" w-full">
-              <div className='flex place-content-around'>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={onRequestClose}
+        style={customStyles}
+        className="relative inset-0 z-50 overflow-auto "
+      >
+        <div className="bg-white rounded-lg shadow-md ">
+            <div className="rounded-lg shadow-md p-6 ">
+            <form onSubmit={handleSubmit} className="">
+              <div className='mt-10 mb-10 flex place-content-around'>
                 {/* Left Column */}
                 <div className="left">
                   {/* Nama Inventaris */}
@@ -102,7 +128,7 @@ const Form = () => {
                   </div>
                 </div>
                 {/* Right Column */}
-                <div className="ml-6 right">
+                <div className="ml-6 right overflow-hidden">
                   {/* List Peminjam */}
                   <div className="mb-6 w-96">
                     <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="status">
@@ -139,19 +165,18 @@ const Form = () => {
                 </div>
               </div>
             <div className="flex items-center justify-end">
-                <button
-                className="font-quicksand bg-custom-green-1 hover:drop-shadow-xl text-white font-bold py-1 px-7 rounded-40 focus:outline-none focus:shadow-outline"
-                type="submit"
-                >
-                 Post
+                <button className="mr-3 font-quicksand bg-main-blue hover:drop-shadow-xl text-white font-normal py-1 px-7 rounded-[4px] focus:outline-none focus:shadow-outline">
+                 Tambah
+                </button>
+                <button className="font-quicksand bg-white hover:drop-shadow-xl text-black font-normal py-1 px-7 rounded-[4px] focus:outline-none focus:shadow-outline hover:drop-shadow-xl" onClick={onRequestClose}>
+                 Cancel
                 </button>
             </div>
             </form>
         </div>
-        
-    </div>
-    
-  )
-}
+        </div>
+      </Modal>
+    );
+};
 
-export default Form;
+export default ModalCreate;

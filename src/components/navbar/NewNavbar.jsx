@@ -70,15 +70,14 @@ export default function NewNavbar() {
     }
   }, []);
 
-
   return (
     
     <nav className="w-1/4 bg-custom-green-3 rounded-tl-0 rounded-tr-[100px] rounded-br-0 rounded-bl-0">
       <div className='p-5 ml-2 mt-3'>
-        <span className='font-quicksand font-semibold text-lg text-custom-white-2'>MENU</span>
+        <span className='font-quicksand font-semibold text-sm text-custom-white-2'>MENU</span>
       </div>
-      <ul className="mt-5">
-        <li className={`mt-6 mb-6 ml-5 rounded-40 ${isClickedHome ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>  
+      <ul className="mt-2">
+        <li className={`mb-6 ml-5 rounded-40 ${isClickedHome ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>  
           <a href="/" id="home" onMouseOver={handleMouseOverHome} onMouseLeave={handleMouseLeaveHome} onClick={handleClickHome} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
           <img 
               src={`${isClickedHome ? process.env.PUBLIC_URL+'/assets/act_icon_active.svg' : (isHoveredHome ? process.env.PUBLIC_URL+'/assets/act_icon_active.svg' : process.env.PUBLIC_URL+'/assets/act_icon.svg')}`} 
@@ -88,7 +87,6 @@ export default function NewNavbar() {
           <span className='ml-2'>Kegiatan</span>
           </a>
         </li>
-
         <li className={`mt-6 mb-6 ml-5 rounded-40 ${isClickedPosts ? 'bg-custom-gradient text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
           <a href="/posts" onMouseOver={handleMouseOverPosts} onMouseLeave={handleMouseLeavePosts} onClick={handleClickPosts} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
           <img 
@@ -99,7 +97,31 @@ export default function NewNavbar() {
           <span className='ml-2'>Sarana dan Prasarana</span>
           </a>
         </li>
-
+      </ul>
+      <div className='p-5 ml-2 mt-3'>
+        <span className='font-quicksand font-semibold text-sm text-custom-white-2'>OTHERS</span>
+      </div>
+      <ul className="mt-2">
+        <li className={`mb-6 ml-5 rounded-40 ${isClickedHome ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>  
+          <a href="/" id="home" onMouseOver={handleMouseOverHome} onMouseLeave={handleMouseLeaveHome} onClick={handleClickHome} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
+          <img 
+              src={`${isClickedHome ? process.env.PUBLIC_URL+'/assets/act_icon_active.svg' : (isHoveredHome ? process.env.PUBLIC_URL+'/assets/act_icon_active.svg' : process.env.PUBLIC_URL+'/assets/act_icon.svg')}`} 
+              alt="Home_icon" 
+              className="ml-0"
+          /> 
+          <span className='ml-2'>Kegiatan</span>
+          </a>
+        </li>
+        <li className={`mt-6 mb-6 ml-5 rounded-40 ${isClickedPosts ? 'bg-custom-gradient text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
+          <a href="/posts" onMouseOver={handleMouseOverPosts} onMouseLeave={handleMouseLeavePosts} onClick={handleClickPosts} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
+          <img 
+            src={`${isClickedPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : (isHoveredPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : process.env.PUBLIC_URL+'/assets/posts_icon.svg')}`} 
+            alt="Posts_icon" 
+            className="ml-0"
+          /> 
+          <span className='ml-2'>Sarana dan Prasarana</span>
+          </a>
+        </li>
         <li className={`ml-10 mr-10 rounded-40 ${isClickedCreate ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
         <a href="/create-post" onMouseOver={handleMouseOverCreate} onMouseLeave={handleMouseLeaveCreate} onClick={handleClickCreate} className="font-quicksand font-medium hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center "> 
           <img 
@@ -108,9 +130,10 @@ export default function NewNavbar() {
             className="pr-3" 
           /> 
               Create
-          </a>
+        </a>
         </li>
       </ul>
     </nav>
+    
   );
 };

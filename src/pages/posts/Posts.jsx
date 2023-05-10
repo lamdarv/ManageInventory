@@ -1,13 +1,15 @@
 import axios from 'axios';
 import Topbar from '../../components/topbar/Topbar';
-import Navbar from '../../components/navbar/Navbar';
-import Bottom from '../../components/bottom/Bottom';
+// import Navbar from '../../components/navbar/Navbar';
+// import Bottom from '../../components/right/Right';
 import { Link, Navigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Modal from '../../components/modal/Modal';
-import { useParams } from "react-router-dom";
-import Select from 'react-select';
+// import { useParams } from "react-router-dom";
+// import Select from 'react-select';
 import NewNavbar from '../../components/navbar/NewNavbar';
+import Right from '../../components/right/Right';
+import Bottom from '../../components/bottom/Bottom';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -66,7 +68,7 @@ const Posts = () => {
         </div>
         <div className="flex">
         
-        <NewNavbar className="" />
+        <NewNavbar/>
           <div className="md:container md:mx-auto">
             <div className="flex flex-wrap justify-center">
               {posts.map(post => (
@@ -119,10 +121,11 @@ const Posts = () => {
                 </div>
               ))}
             </div>
-            <Bottom />
+            {/* <Bottom /> */}
           </div>
-          
+          <Right />
         </div>
+        
       </div>
     )
     
