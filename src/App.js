@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import Posts from "./pages/posts/Posts";
 import Notifikasi from './pages/notifikasi/Notifikasi';
 import Keluar from './pages/keluar/Keluar';
+import Profile from './pages/profile/Profile';
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
           <Route path="/posts" element={<Posts/>} />
           <Route path="/create-post" element={<Create/>} />
           <Route path="/notifikasi" element={<Notifikasi/>} />
-          <Route path="/keluar" element={<Keluar/>} />
+          <Route path="/profile" element={<Profile/>} />
         </Routes>
       </Router>
     </div>

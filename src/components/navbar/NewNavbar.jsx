@@ -7,6 +7,7 @@ export default function NewNavbar() {
   const [isHoveredCreate, setIsHoveredCreate] = useState(false);
   const [isHoveredNotif, setIsHoveredNotif] = useState(false);
   const [isHoveredKeluar, setIsHoveredKeluar] = useState(false);
+  const [isHoveredProfile, setIsHoveredProfile] = useState(false);
 
   const [isClickedHome, setIsClickedHome] = useState(false);
   const [isClickedPosts, setIsClickedPosts] = useState(false);
@@ -48,6 +49,15 @@ export default function NewNavbar() {
 
   const handleMouseLeaveKeluar = () => {
     setIsHoveredKeluar(false);
+  };
+
+  //Profile Hover
+  const handleMouseOverProfile = () => {
+    setIsHoveredProfile(true);
+  };
+
+  const handleMouseLeaveProfile = () => {
+    setIsHoveredProfile(false);
   };
 
   //Create Hover
@@ -150,17 +160,19 @@ export default function NewNavbar() {
           <span className='ml-2'>Keluar</span>
           </a>
         </li>
-        {/* <li className={`ml-10 mr-10 rounded-40 ${isClickedCreate ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
-        <a href="/create-post" onMouseOver={handleMouseOverCreate} onMouseLeave={handleMouseLeaveCreate} onClick={handleClickCreate} className="font-quicksand font-medium hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center "> 
-          <img 
-            src={`${isClickedCreate ? process.env.PUBLIC_URL+'/assets/create_icon_active.svg' : (isHoveredCreate ? process.env.PUBLIC_URL+'/assets/create_icon_active.svg' : process.env.PUBLIC_URL+'/assets/create_icon.svg')}`} 
-            alt="Create_icon" 
-            className="pr-3" 
-          /> 
-              Create
-        </a>
-        </li> */}
       </ul>
+      <a href="/profile" onMouseOver={handleMouseOverProfile} onMouseLeave={handleMouseLeaveProfile} className=''>
+        <div className='flex bg-white p-3 m-12 rounded-[10px] shadow-md hover:drop-shadow-xl bg-custom-gray-3'>
+          <div className='flex justify-center items-center' id="profile">
+            <img className='w-[53px] ' src={process.env.PUBLIC_URL+'/assets/dkm_pict.png'} alt="" />
+          </div>
+          <div className='ml-2 mt-1 items-center font-quicksand' id="lembaga">
+            <strong>DKM</strong>
+            <p className='text-[13px]'>View Profile</p>
+          </div>
+        </div>
+      </a>
+      
     </nav>
     
   );
