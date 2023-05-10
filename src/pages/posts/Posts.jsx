@@ -1,15 +1,14 @@
 import axios from 'axios';
 import Topbar from '../../components/topbar/Topbar';
-// import Navbar from '../../components/navbar/Navbar';
-// import Bottom from '../../components/right/Right';
 import { Link, Navigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Modal from '../../components/modal/Modal';
-// import { useParams } from "react-router-dom";
-// import Select from 'react-select';
+import Select from 'react-select';
 import NewNavbar from '../../components/navbar/NewNavbar';
 import Right from '../../components/right/Right';
 import Bottom from '../../components/bottom/Bottom';
+import Dropdown from 'react-dropdown';
+import { FaAngleDown } from 'react-icons/fa';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -54,19 +53,24 @@ const Posts = () => {
         rows.push(posts.slice(i, i + 2));
     }
 
-    const options = posts.map(post => ({
-        label: post.list_peminjam,
-        value: post.list_peminjam
-    }));
-      
+    // const options = posts.map(post => ({
+    //     label: post.list_peminjam,
+    //     value: post.list_peminjam
+    // }));
 
-    
+    // const options = posts.flatMap(post => post.list_peminjam).map(peminjam => ({ value: peminjam, label: peminjam }));
+
+    const options = posts.map(post => ({
+      label: post.list_peminjam.map(peminjam => <li key={peminjam}>{peminjam}</li>),
+      value: post.list_peminjam.map(peminjam => <li key={peminjam}>{peminjam}</li>)
+    }));
+
     return (
       <div className='relative bg-custom-green-4'>
         <div className='w-full' id='Top'>
           <Topbar />
         </div>
-        <div className="flex">
+        <div className="flex h-screen">
         
         <NewNavbar/>
           <div className="md:container md:mx-auto">
@@ -91,14 +95,32 @@ const Posts = () => {
                         <td className='font-quicksand font-normal text-lg pr-6'>{post.status}</td>
                     </tr>
                     <tr>
+                    {/* <td className='font-quicksand font-normal text-lg pr-6'><strong>List Peminjam</strong></td> */}
+                    {/* <td>
+                      <Dropdown options={options} value={selectedOption} onChange={(option) => setSelectedOption(option)} placeholder="Lihat semua daftar peminjam" />
+                    </td> */}
+                    
+
+                    </tr>
+                    <tr>
                         <td className='font-quicksand font-normal text-lg pr-6'><strong>List Peminjam</strong></td>
                         <td>
-                        <ul className="font-quicksand font-normal text-lg pr-6">
-                            {post.list_peminjam.map((peminjam) => (
-                            <li key={peminjam}>{peminjam}</li>
-                            ))}
-                        </ul>
+                        <Dropdown
+                          className='list-none font-quicksand font-normal text-lg pr-6 relative'
+                          options={options}
+                          value={selectedOption}
+                          onChange={(option) => setSelectedOption(option)}
+                          placeholder="Klik di sini untuk melihat semua daftar peminjam"
+                          arrowRenderer={() => <FaAngleDown />}
+                        />
                         </td>
+                        {/* <td>
+                          <ul className="font-quicksand font-normal text-lg pr-6">
+                              {post.list_peminjam.map((peminjam) => (
+                              <li key={peminjam}>{peminjam}</li>
+                              ))}
+                          </ul>
+                        </td> */}
                     </tr>
                     </table>
                   <ul className="flex items-center mt-6 justify-center">
@@ -121,7 +143,7 @@ const Posts = () => {
                 </div>
               ))}
             </div>
-            {/* <Bottom /> */}
+            <Bottom />
           </div>
           <Right />
         </div>

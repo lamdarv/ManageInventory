@@ -32,12 +32,14 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
     const [tgl_kepemilikan, setTglKepemilikan] = useState("");
     const [status, setStatus] = useState("Tersedia"); // initialize to a default value
     const [peminjam, setPeminjam] = useState("Tidak ada");
-    
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
+        
         const data = { 
           nama,
           deskripsi, 
@@ -47,9 +49,16 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
         };
 
         try {
-          const response = await axios.post('http://localhost:5000/api/post/', data);
-          console.log('Note created successfully!');
-          navigate('/posts');
+          const response = await axios.get(`http://localhost:5000/api/post/?nama=${nama}`);
+          // if (response.data.length > 0) {
+          //   window.alert('Inventaris sudah ada di dalam database! ilakan tambahkan inventaris yang berbeda');
+          //   return;
+          // }
+          await axios.post('http://localhost:5000/api/post/', data);
+          window.alert('Inventaris berhasil ditambahkan!');
+          onRequestClose();
+          // navigate('/posts');
+          window.location.reload()
         } catch (error) {
           console.error('Error creating note:', error);
         }
@@ -59,7 +68,15 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
       { value: '201524049 - Lamda Richo Vanjaya Sumaryadi', label: '201524049 - Lamda Richo Vanjaya Sumaryadi' },
       { value: '201524045 - Fiora Berliana Putri', label: '201524045 - Fiora Berliana Putri' },
       { value: '201524055 - Nauval Ozora Mahadri', label: '201524055 - Nauval Ozora Mahadri'},
+      { value: '201524060 - Vani Anjelina Rangkuti', label: '201524060 - Vani Anjelina Rangkuti' },
+      { value: '201524037 - Alvin Mulia Putra', label: '201524037 - Alvin Mulia Putra' },
+      { value: '201524043 - Arief Nur Rachman', label: '201524043 - Arief Nur Rachman' },
+      { value: '201524056 - Novian Afiq', label: '201524056 - Novian Afiq' },
+      { value: '201524048 - Halimatussadiyah', label: '201524048 - Halimatussadiyah' },
+      { value: '201524052 - Muhammad Rifqi Hidayatullah', label: '201524052 - Muhammad Rifqi Hidayatullah' },
+      { value: '201524042 - Satria Akhmad Ihsani', label: '201524042 - Satria Akhmad Ihsani' },
     ];
+    
   
     return (
       <Modal
