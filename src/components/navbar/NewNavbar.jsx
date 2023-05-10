@@ -5,20 +5,16 @@ export default function NewNavbar() {
   const [isHoveredHome, setIsHoveredHome] = useState(false);
   const [isHoveredPosts, setIsHoveredPosts] = useState(false);
   const [isHoveredCreate, setIsHoveredCreate] = useState(false);
+  const [isHoveredNotif, setIsHoveredNotif] = useState(false);
+  const [isHoveredKeluar, setIsHoveredKeluar] = useState(false);
+
   const [isClickedHome, setIsClickedHome] = useState(false);
   const [isClickedPosts, setIsClickedPosts] = useState(false);
   const [isClickedCreate, setIsClickedCreate] = useState(false);
+  const [isClickedNotif, setIsClickedNotif] = useState(false);
+  const [isClickedKeluar, setIsClickedKeluar] = useState(false);
 
-  // Search Hover
-  const handleMouseOverSearch = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeaveSearch = () => {
-    setIsHovered(false);
-  };
-
-  //Home Hover
+  //Home Hover atau Kegiatan Hover
   const handleMouseOverHome = () => {
     setIsHoveredHome(true);
   };
@@ -27,13 +23,31 @@ export default function NewNavbar() {
     setIsHoveredHome(false);
   };
 
-  //Posts Hover
+  //Posts Hover atau Inventory
   const handleMouseOverPosts = () => {
     setIsHoveredPosts(true);
   };
 
   const handleMouseLeavePosts = () => {
     setIsHoveredPosts(false);
+  };
+
+  //Notif Hover
+  const handleMouseOverNotif = () => {
+    setIsHoveredNotif(true);
+  };
+
+  const handleMouseLeaveNotif = () => {
+    setIsHoveredNotif(false);
+  };
+
+  //Keluar Hover
+  const handleMouseOverKeluar = () => {
+    setIsHoveredKeluar(true);
+  };
+
+  const handleMouseLeaveKeluar = () => {
+    setIsHoveredKeluar(false);
   };
 
   //Create Hover
@@ -58,6 +72,16 @@ export default function NewNavbar() {
   //Create Clicked
   const handleClickCreate = () => {
     setIsClickedCreate(true); 
+  };
+
+  //Notif Clicked
+  const handleClickNotif = () => {
+    setIsClickedNotif(true); 
+  };
+
+  //Keluar Clicked
+  const handleClickKeluar = () => {
+    setIsClickedKeluar(true); 
   };
 
   useEffect(() => {
@@ -87,10 +111,10 @@ export default function NewNavbar() {
           <span className='ml-2'>Kegiatan</span>
           </a>
         </li>
-        <li className={`mt-6 mb-6 ml-5 rounded-40 ${isClickedPosts ? 'bg-custom-gradient text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
+        <li className={`mt-6 mb-6 ml-5 rounded-40 ${isClickedPosts ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>
           <a href="/posts" onMouseOver={handleMouseOverPosts} onMouseLeave={handleMouseLeavePosts} onClick={handleClickPosts} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
           <img 
-            src={`${isClickedPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : (isHoveredPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : process.env.PUBLIC_URL+'/assets/posts_icon.svg')}`} 
+            src={`${isClickedPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : (isHoveredPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : process.env.PUBLIC_URL+'/assets/sarpras_icon.svg')}`} 
             alt="Posts_icon" 
             className="ml-0"
           /> 
@@ -102,27 +126,27 @@ export default function NewNavbar() {
         <span className='font-quicksand font-semibold text-sm text-custom-white-2'>OTHERS</span>
       </div>
       <ul className="mt-2">
-        <li className={`mb-6 ml-5 rounded-40 ${isClickedHome ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>  
-          <a href="/" id="home" onMouseOver={handleMouseOverHome} onMouseLeave={handleMouseLeaveHome} onClick={handleClickHome} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
+        <li className={`mb-6 ml-5 rounded-40 ${isClickedNotif ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>  
+          <a href="/" id="home" onMouseOver={handleMouseOverNotif} onMouseLeave={handleMouseLeaveNotif} onClick={handleClickNotif} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
           <img 
-              src={`${isClickedHome ? process.env.PUBLIC_URL+'/assets/act_icon_active.svg' : (isHoveredHome ? process.env.PUBLIC_URL+'/assets/act_icon_active.svg' : process.env.PUBLIC_URL+'/assets/act_icon.svg')}`} 
+              src={`${isClickedNotif ? process.env.PUBLIC_URL+'/assets/notification_icon_active.svg' : (isHoveredNotif ? process.env.PUBLIC_URL+'/assets/notification_icon_active.svg' : process.env.PUBLIC_URL+'/assets/notification_icon.svg')}`} 
               alt="Home_icon" 
               className="ml-0"
           /> 
-          <span className='ml-2'>Kegiatan</span>
+          <span className='ml-2'>Notifikasi</span>
           </a>
         </li>
-        <li className={`mt-6 mb-6 ml-5 rounded-40 ${isClickedPosts ? 'bg-custom-gradient text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
-          <a href="/posts" onMouseOver={handleMouseOverPosts} onMouseLeave={handleMouseLeavePosts} onClick={handleClickPosts} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
+        <li className={`mb-6 ml-5 rounded-40 ${isClickedKeluar ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>  
+          <a href="/" id="home" onMouseOver={handleMouseOverKeluar} onMouseLeave={handleMouseLeaveKeluar} onClick={handleClickKeluar} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
           <img 
-            src={`${isClickedPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : (isHoveredPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : process.env.PUBLIC_URL+'/assets/posts_icon.svg')}`} 
-            alt="Posts_icon" 
-            className="ml-0"
+              src={`${isClickedKeluar ? process.env.PUBLIC_URL+'/assets/signout_icon_active.svg' : (isHoveredKeluar ? process.env.PUBLIC_URL+'/assets/signout_icon_active.svg' : process.env.PUBLIC_URL+'/assets/signout_icon.svg')}`} 
+              alt="Signout_icon" 
+              className="ml-0"
           /> 
-          <span className='ml-2'>Sarana dan Prasarana</span>
+          <span className='ml-2'>Keluar</span>
           </a>
         </li>
-        <li className={`ml-10 mr-10 rounded-40 ${isClickedCreate ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
+        {/* <li className={`ml-10 mr-10 rounded-40 ${isClickedCreate ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
         <a href="/create-post" onMouseOver={handleMouseOverCreate} onMouseLeave={handleMouseLeaveCreate} onClick={handleClickCreate} className="font-quicksand font-medium hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center "> 
           <img 
             src={`${isClickedCreate ? process.env.PUBLIC_URL+'/assets/create_icon_active.svg' : (isHoveredCreate ? process.env.PUBLIC_URL+'/assets/create_icon_active.svg' : process.env.PUBLIC_URL+'/assets/create_icon.svg')}`} 
@@ -131,7 +155,7 @@ export default function NewNavbar() {
           /> 
               Create
         </a>
-        </li>
+        </li> */}
       </ul>
     </nav>
     

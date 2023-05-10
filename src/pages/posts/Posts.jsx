@@ -78,7 +78,7 @@ const Posts = () => {
         <div className='w-full' id='Top'>
           <Topbar />
         </div>
-        <div className="flex h-screen">
+        <div className="flex min-h-screen">
         
         <NewNavbar/>
           <div className="md:container md:mx-auto">
@@ -107,27 +107,32 @@ const Posts = () => {
                     <tr>
                         <td className='font-quicksand font-normal text-lg pr-6'><strong>List Peminjam</strong></td>
                         <td>
-                        <Dropdown
+                        <ul className="font-quicksand font-normal text-lg pr-6">
+                            {post.list_peminjam.map((peminjam) => (
+                            <li key={peminjam}>{peminjam}</li>
+                            ))}
+                        </ul>
+                        {/* <Dropdown
                           className='list-none font-quicksand font-normal text-lg pr-6 relative'
                           options={options}
                           value={selectedOption}
                           onChange={(option) => setSelectedOption(option)}
                           placeholder="Klik di sini untuk melihat semua daftar peminjam"
                           arrowRenderer={() => <FaAngleDown />}
-                        />
+                        /> */}
                         </td>
                     </tr>
                     </table>
                   <ul className="flex items-center mt-6 justify-center">
                     <li className="rounded-40 bg-custom-green-1 hover:drop-shadow-xl items-center w-28">
-                      {/* <Link to={`/update/${post._id}`} onClick={handleModalUpdateOpen} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
-                        <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
-                        Edit
-                      </Link> */}
-                      <Link onClick={handleModalUpdateOpen} data-id={post._id} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
+                      <Link to={`/update/${post._id}`} onClick={handleModalUpdateOpen} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
                         <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
                         Edit
                       </Link>
+                      {/* <Link onClick={handleModalUpdateOpen} data-id={post._id} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">
+                        <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
+                        Edit
+                      </Link> */}
                     </li>
                     <li className="ml-6 rounded-40 bg-custom-red-1 hover:drop-shadow-xl items-center w-28">
                       <Link className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center " onClick={() => setShowModal(post._id)}>
