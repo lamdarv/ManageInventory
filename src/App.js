@@ -16,6 +16,7 @@ export default function App() {
           <Route path="/create-post" element={<Create/>} />
           <Route path="/notifikasi" element={<Notifikasi/>} />
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/keluar" element={<Keluar />} />
         </Routes>
       </Router>
     </div>
