@@ -207,6 +207,9 @@ const ModalUpdate = ({isOpen, onRequestClose, postId}) => {
                 >
                 <a>Update</a>
                 </button>
+                <button className="font-quicksand bg-white hover:drop-shadow-xl text-black font-normal py-1 px-7 rounded-[4px] focus:outline-none focus:shadow-outline hover:drop-shadow-xl" onClick={onRequestClose}>
+                 Cancel
+                </button>
             </div>
           </form>
         </div>
