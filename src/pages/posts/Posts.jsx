@@ -32,6 +32,7 @@ const Posts = () => {
     const deletePost = async (id) => {
         try {
             await axios.delete(`http://localhost:5000/api/post/${id}`);
+            window.alert("Invetaris berhasil dihapus!")
             getPosts();
         } catch (error) {
             console.log(error);
