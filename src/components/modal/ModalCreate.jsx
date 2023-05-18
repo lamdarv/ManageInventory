@@ -39,6 +39,14 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const specialCharsRegex = /[^\w\s]/gi;
+        const hasSpecialChars = specialCharsRegex.test(nama) || specialCharsRegex.test(deskripsi);
+      
+        if (hasSpecialChars) {
+          window.alert('Invalid Data!');
+          return;
+        }
         
         const data = { 
           nama,

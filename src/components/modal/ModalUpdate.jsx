@@ -50,26 +50,35 @@ const ModalUpdate = ({isOpen, onRequestClose, postId}) => {
     };
 
     const updatePost = async (event) => {
-        event.preventDefault();
-        
-        const data = { 
-          nama,
-          deskripsi, 
-          tgl_kepemilikan: tgl_kepemilikan.toISOString(),
-          status, 
-          list_peminjam: peminjam
-        };
-
-        try {
-            const response = await axios.patch(`http://localhost:5000/api/post/${postId}`, data);
-            window.alert('Inventaris berhasil diupdate!');
-            onRequestClose();
-            // navigate('/posts');
-            window.location.reload()
-        } catch (error) {
-          console.error('Error updating note:', error);
-        }
+      event.preventDefault();
+    
+      const specialCharsRegex = /[^\w\s]/gi;
+      const hasSpecialChars = specialCharsRegex.test(nama) || specialCharsRegex.test(deskripsi);
+    
+      if (hasSpecialChars) {
+        window.alert('Invalid Data!');
+        return;
+      }
+    
+      const data = { 
+        nama,
+        deskripsi, 
+        tgl_kepemilikan: tgl_kepemilikan.toISOString(),
+        status, 
+        list_peminjam: peminjam
+      };
+    
+      try {
+        const response = await axios.patch(`http://localhost:5000/api/post/${postId}`, data);
+        window.alert('Inventaris berhasil diupdate!');
+        onRequestClose();
+        // navigate('/posts');
+        window.location.reload()
+      } catch (error) {
+        console.error('Error updating note:', error);
+      }
     };
+    
 
     const options = [
       { value: 'Tidak ada', label: 'Tidak ada'},
