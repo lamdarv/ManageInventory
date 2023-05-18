@@ -31,7 +31,7 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
     const [deskripsi, setDeskripsi] = useState("");
     const [tgl_kepemilikan, setTglKepemilikan] = useState("");
     const [status, setStatus] = useState("Tersedia"); // initialize to a default value
-    const [peminjam, setPeminjam] = useState("Tidak ada");
+    const [peminjam, setPeminjam] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -169,7 +169,7 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
                       isSearchable={true}
                       isMulti={true}
                       className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
-                      isRequired={true}
+                      isRequired={false}
                     />
                   </div>
 
