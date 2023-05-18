@@ -72,6 +72,7 @@ const ModalUpdate = ({isOpen, onRequestClose, postId}) => {
     };
 
     const options = [
+      { value: 'Tidak ada', label: 'Tidak ada'},
       { value: '201524049 - Lamda Richo Vanjaya Sumaryadi', label: '201524049 - Lamda Richo Vanjaya Sumaryadi' },
       { value: '201524045 - Fiora Berliana Putri', label: '201524045 - Fiora Berliana Putri' },
       { value: '201524055 - Nauval Ozora Mahadri', label: '201524055 - Nauval Ozora Mahadri'},
