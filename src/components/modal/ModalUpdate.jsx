@@ -176,6 +176,7 @@ const ModalUpdate = ({isOpen, onRequestClose, postId}) => {
                     placeholder="Cari atau pilih peminjam"
                     isSearchable={true}
                     isMulti={true}
+                    isRequired={true}
                     className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
                   />
                 </div>

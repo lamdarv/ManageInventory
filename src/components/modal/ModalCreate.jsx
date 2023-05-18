@@ -47,6 +47,11 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
           window.alert('Invalid Data!');
           return;
         }
+
+        if (!nama || !deskripsi || !tgl_kepemilikan || !status || !peminjam) {
+          window.alert('Semua field harus diisi!');
+          return;
+        }
         
         const data = { 
           nama,
@@ -58,10 +63,6 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
 
         try {
           const response = await axios.get(`http://localhost:5000/api/post/?nama=${nama}`);
-          // if (response.data.length > 0) {
-          //   window.alert('Inventaris sudah ada di dalam database! ilakan tambahkan inventaris yang berbeda');
-          //   return;
-          // }
           await axios.post('http://localhost:5000/api/post/', data);
           window.alert('Inventaris berhasil ditambahkan!');
           onRequestClose();
@@ -168,6 +169,7 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
                       isSearchable={true}
                       isMulti={true}
                       className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
+                      isRequired={true}
                     />
                   </div>
 
