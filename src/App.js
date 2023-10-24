@@ -23,7 +23,11 @@ export default function App() {
         <Routes>
           <Route
             path="/kegiatan"
-            element={user ? <Kegiatan /> : <Navigate to="/login" />}
+            element={
+              localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "staf" || localStorage.getItem("role") === "mahasiswa" ?
+                <Kegiatan />
+              : <Navigate to="/" />
+            }
           />
           <Route
             path="/posts"

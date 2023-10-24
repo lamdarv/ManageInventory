@@ -99,7 +99,7 @@ export default function NewNavbar() {
   };
 
   useEffect(() => {
-    if (window.location.pathname === "/") {
+    if (window.location.pathname === "/kegiatan") {
       setIsClickedHome(true);
     } else if (window.location.pathname === "/posts"){
       setIsClickedPosts(true);
@@ -120,7 +120,7 @@ export default function NewNavbar() {
       </div>
       <ul className="mt-2">
         <li className={`mb-6 ml-5 rounded-40 ${isClickedHome ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>  
-          <a href="/" id="home" onMouseOver={handleMouseOverHome} onMouseLeave={handleMouseLeaveHome} onClick={handleClickHome} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
+          <a href="/kegiatan" id="home" onMouseOver={handleMouseOverHome} onMouseLeave={handleMouseLeaveHome} onClick={handleClickHome} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
           <img 
               src={`${isClickedHome ? process.env.PUBLIC_URL+'/assets/act_icon_active.svg' : (isHoveredHome ? process.env.PUBLIC_URL+'/assets/act_icon_active.svg' : process.env.PUBLIC_URL+'/assets/act_icon.svg')}`} 
               alt="Home_icon" 
