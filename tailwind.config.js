@@ -25,6 +25,7 @@ module.exports = {
         'custom-gray-2': '#58625A',
         'custom-gray-4': '#4D4747',
         'custom-white-2': '#F1E9E9',
+        'gray-auth':'#898989',
       },
       borderRadius: {
         '40':'40px',
@@ -32,6 +33,7 @@ module.exports = {
       fontFamily: {
         quicksand: ['Quicksand', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       fontSize: {
         '13':'13px',

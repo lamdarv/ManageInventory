@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLogout } from '../../hooks/useLogout';
 
 export default function NewNavbar() {
   const [isHovered, setIsHovered] = useState(false);
@@ -14,6 +15,8 @@ export default function NewNavbar() {
   const [isClickedCreate, setIsClickedCreate] = useState(false);
   const [isClickedNotif, setIsClickedNotif] = useState(false);
   const [isClickedKeluar, setIsClickedKeluar] = useState(false);
+
+  const {logout} = useLogout();
 
   //Home Hover atau Kegiatan Hover
   const handleMouseOverHome = () => {
@@ -91,6 +94,7 @@ export default function NewNavbar() {
 
   //Keluar Clicked
   const handleClickKeluar = () => {
+    logout();
     setIsClickedKeluar(true); 
   };
 
@@ -103,7 +107,7 @@ export default function NewNavbar() {
       setIsClickedCreate(true);
     } else if (window.location.pathname === "/notifikasi"){
       setIsClickedNotif(true);
-    } else if (window.location.pathname === "/keluar"){
+    } else if (window.location.pathname === "/login"){
       setIsClickedKeluar(true);
     } 
   }, []);
@@ -151,7 +155,7 @@ export default function NewNavbar() {
           </a>
         </li>
         <li className={`mb-6 ml-5 rounded-40 ${isClickedKeluar ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>  
-          <a href="/keluar" id="home" onMouseOver={handleMouseOverKeluar} onMouseLeave={handleMouseLeaveKeluar} onClick={handleClickKeluar} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
+          <a href="/login" id="home" onMouseOver={handleMouseOverKeluar} onMouseLeave={handleMouseLeaveKeluar} onClick={handleClickKeluar} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
           <img 
               src={`${isClickedKeluar ? process.env.PUBLIC_URL+'/assets/signout_icon_active.svg' : (isHoveredKeluar ? process.env.PUBLIC_URL+'/assets/signout_icon_active.svg' : process.env.PUBLIC_URL+'/assets/signout_icon.svg')}`} 
               alt="Signout_icon" 

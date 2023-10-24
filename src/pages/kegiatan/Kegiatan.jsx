@@ -1,7 +1,7 @@
 import Topbar from "../../components/topbar/Topbar";
 import NewNavbar from "../../components/navbar/NewNavbar";
 
-export default function Home() {
+export default function Kegiatan() {
   return (
     <div className='relative bg-custom-green-4'>
       <div className='w-full' id='Top'>

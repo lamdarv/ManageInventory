@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios from '../../axiosConfig';
+// import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 import Modal from 'react-modal';
+// import { usePostContext } from '../../hooks/usePostContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 Modal.setAppElement('#root');
 
@@ -32,13 +34,20 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
     const [tgl_kepemilikan, setTglKepemilikan] = useState("");
     const [status, setStatus] = useState("Tersedia"); // initialize to a default value
     const [peminjam, setPeminjam] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    // const [isLoading, setIsLoading] = useState(false);
+    const [setError] = useState(null);
+    const {user} = useAuthContext();
+    // const {dispatch} = usePostContext();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!user) {
+          setError('You must be logged in')
+          return 
+        }
 
         const specialCharsRegex = /[^\w\s]/gi;
         const hasSpecialChars = specialCharsRegex.test(nama) || specialCharsRegex.test(deskripsi);
@@ -62,14 +71,21 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
         };
 
         try {
-          const response = await axios.get(`http://localhost:5000/api/post/?nama=${nama}`);
-          await axios.post('http://localhost:5000/api/post/', data);
-          window.alert('Inventaris berhasil ditambahkan!');
-          onRequestClose();
-          // navigate('/posts');
-          window.location.reload()
+          const response = await axios.post("/api/post", data, {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            }, 
+          });
+          if (response.status === 200) {
+            // setPosts(response.data);
+            window.alert('Inventaris berhasil ditambahkan!');
+            onRequestClose();
+            window.location.reload()
+          } else {
+            console.error("Failed to create posts:", response.statusText);
+          }
         } catch (error) {
-          console.error('Error creating note:', error);
+          console.error(error);
         }
     };
 
