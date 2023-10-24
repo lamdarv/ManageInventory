@@ -28,7 +28,7 @@ const customStyles = {
   }
 };
 
-const ModalCreate = ({isOpen, onRequestClose}) => {
+const ModalCreateInventory = ({isOpen, onRequestClose}) => {
     const [nama, setNama] = useState("");
     const [deskripsi, setDeskripsi] = useState("");
     const [tgl_kepemilikan, setTglKepemilikan] = useState("");
@@ -223,4 +223,4 @@ const ModalCreate = ({isOpen, onRequestClose}) => {
     );
 };
 
-export default ModalCreate;
+export default ModalCreateInventory;

@@ -3,7 +3,7 @@ import NewNavbar from "../../components/navbar/NewNavbar";
 
 export default function Kegiatan() {
   return (
-    <div className='relative bg-custom-green-4'>
+    <div className='relative bg-white'>
       <div className='w-full' id='Top'>
         <Topbar />
       </div>

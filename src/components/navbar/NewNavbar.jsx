@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLogout } from '../../hooks/useLogout';
 
 export default function NewNavbar() {
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
   const [isHoveredHome, setIsHoveredHome] = useState(false);
   const [isHoveredPosts, setIsHoveredPosts] = useState(false);
   const [isHoveredCreate, setIsHoveredCreate] = useState(false);
@@ -101,7 +101,7 @@ export default function NewNavbar() {
   useEffect(() => {
     if (window.location.pathname === "/kegiatan") {
       setIsClickedHome(true);
-    } else if (window.location.pathname === "/posts"){
+    } else if (window.location.pathname === "/inventoryAdmin"){
       setIsClickedPosts(true);
     } else if (window.location.pathname === "/create-post"){
       setIsClickedCreate(true);
@@ -130,7 +130,7 @@ export default function NewNavbar() {
           </a>
         </li>
         <li className={`mt-6 mb-6 ml-5 rounded-40 ${isClickedPosts ? 'bg-custom-gradient text-white' : 'text-custom-gray-2 hover:bg-custom-gradient text-white'} hover:drop-shadow-xl items-center`}>
-          <a href="/posts" onMouseOver={handleMouseOverPosts} onMouseLeave={handleMouseLeavePosts} onClick={handleClickPosts} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
+          <a href="/inventoryAdmin" onMouseOver={handleMouseOverPosts} onMouseLeave={handleMouseLeavePosts} onClick={handleClickPosts} className="font-quicksand font-medium text-sm hover:text-white pr-4 flex items-center "> 
           <img 
             src={`${isClickedPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : (isHoveredPosts ? process.env.PUBLIC_URL+'/assets/sarpras_icon_active.svg' : process.env.PUBLIC_URL+'/assets/sarpras_icon.svg')}`} 
             alt="Posts_icon" 

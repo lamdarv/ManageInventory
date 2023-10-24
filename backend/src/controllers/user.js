@@ -67,6 +67,17 @@ const getUserById = async (req, res) => {
 	}
 }
 
+const getUsersByRoleMahasiswa = async (req, res) => {
+  try {
+    const users = await User.find({ role: "mahasiswa" }).exec();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("error");
+  }
+};
+
+
 const getRoleByEmail = async (req, res) => {
   const { email } = req.body;
 
@@ -83,4 +94,4 @@ const getRoleByEmail = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, registerUser, getUser, getUserById, getRoleByEmail };
+module.exports = { loginUser, registerUser, getUser, getUserById, getRoleByEmail, getUsersByRoleMahasiswa };

@@ -28,7 +28,7 @@ const customStyles = {
   },
 };
 
-const ModalUpdate = ({ isOpen, onRequestClose, postId }) => {
+const ModalUpdateInventory = ({ isOpen, onRequestClose, postId }) => {
   const [nama, setNama] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
   const [tgl_kepemilikan, setTglKepemilikan] = useState("");
@@ -289,4 +289,4 @@ const ModalUpdate = ({ isOpen, onRequestClose, postId }) => {
   );
 };
 
-export default ModalUpdate;
+export default ModalUpdateInventory;

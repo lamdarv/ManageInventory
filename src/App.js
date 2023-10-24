@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Create from "./pages/create/Create";
 // import Home from "./pages/home/Home";
-import Posts from "./pages/posts/Posts";
+// import Posts from "./pages/posts/Posts";
 import Notifikasi from "./pages/notifikasi/Notifikasi";
 import Keluar from "./pages/keluar/Keluar";
 import Profile from "./pages/profile/Profile";
@@ -10,6 +10,8 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import { useAuthContext } from "./hooks/useAuthContext";
 import Kegiatan from "./pages/kegiatan/Kegiatan";
+import Inventory from "./pages/inventory/Inventory";
+import ModalAddInventory from "./components/modal/ModalAddInventory";
 
 export default function App() {
   const { user } = useAuthContext();
@@ -30,10 +32,10 @@ export default function App() {
             }
           />
           <Route
-            path="/posts"
+            path="/inventoryAdmin"
             element={
               localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "staf" ?
-                <Posts />
+                <Inventory />
               : <Navigate to="/" />
             }
           />
@@ -50,6 +52,10 @@ export default function App() {
             path="/login"
             element={!user ? <Login /> : <Navigate to="/" />}
           />
+          <Route 
+            path="/testAddInventory"
+            element={!user ? <ModalAddInventory /> : <Navigate to="/" />} 
+            />
         </Routes>
       </BrowserRouter>
     </div>
